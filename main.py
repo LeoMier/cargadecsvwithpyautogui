@@ -1,5 +1,5 @@
 import pyautogui
-import pytesseract
-from PIL import ImageGrab
-pyautogui.click(46, 84)
-print(pyautogui.position())
+import time
+pyautogui.click(708, 221)
+time.sleep(3)
+#pyautogui.hotkey('alt', 'tab')

@@ -6,3 +6,5 @@ sudo apt-get install scrot
 sudo apt-get install python3-tk
 pip install pillow
 pip install pytesseract
+sudo apt-get install xorg
+
