@@ -5,11 +5,12 @@ import pytesseract
 import time
 import Levenshtein
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# first, we obtain the name of all files in a list
 path_i = r'C:\Users\leomj\Documents\LEO\csvuploader\cargadecsvwithpyautogui\a_subir'
 path_f = r'C:\Users\leomj\Documents\LEO\csvuploader\cargadecsvwithpyautogui\subidos'
 url = r'https://bubble.io/page?id=sammanger'
 directory = 'All TimeCards'
-
+first_run = True
 def search_for_file(image_text):
     closest_name = None
     closest_distance = float('inf')
@@ -54,7 +55,7 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
             screenshot = ImageGrab.grab(bbox=(a, b, c, d))
             str_test = pytesseract.image_to_string(screenshot)
 
-def upload_data():
+def upload_data(first_run):
     time.sleep(1)
     pyautogui.click(982, 295) #click upload
     wait_for_confirmation('chosen', 261, 303, 383, 340, time_out= 10)
@@ -68,7 +69,9 @@ def upload_data():
     time.sleep(1.5)
     pyautogui.click(687, 47) #click the path
     time.sleep(2)
-    pyautogui.typewrite(path_i) #enter the path
+    if first_run == True:
+         pyautogui.typewrite(path_i) #enter the path
+    else: pass
     time.sleep(0.1)
     pyautogui.hotkey('enter')
     time.sleep(1.5)
@@ -95,12 +98,15 @@ def upload_data():
     wait_for_confirmation('ready', 439, 540, 667, 562, time_out=10)
     pyautogui.hotkey('end')
     time.sleep(0.5)
-    #pyautogui.click(344, 554) #upload data
+    pyautogui.click(344, 554) #upload data
     file_name = search_for_file(file_name)
-    #wait_for_confirmation('ready', 439, 540, 667, 562, time_out=3_000_000)
+    wait_for_confirmation('completed', 255, 351, 816, 394, time_out=300)
+    pyautogui.click(685, 446)
+    pyautogui.hotkey('f5')
     os.rename(path_i + '\\' + file_name, path_f + '\\' + file_name)
 
 acces_the_webb_app()
 for _ in os.listdir(path_i):
-    upload_data()
+    upload_data(first_run)
+    first_run=False
     wait_for_confirmation('Data', 6, 294, 56, 313, time_out=20)
