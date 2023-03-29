@@ -26,22 +26,22 @@ def acces_the_webb_app():
     reload()
 
 def reload():
-    pyautogui.click(435, 49) #access the url
+    pyautogui.click(162, 48) #access the url
     time.sleep(0.3)
     pyautogui.typewrite(url)
     time.sleep(0.3)
     pyautogui.hotkey('enter')
     time.sleep(2)
-    wait_for_confirmation('Data', 6, 294, 56, 313, time_out=60)
-    pyautogui.click(22, 295) #click on data onglet
-    wait_for_confirmation('App', 342, 182, 418, 209, time_out = 60)
-    pyautogui.click(378, 190) #click in APP DATA
+    wait_for_confirmation('Data', 18, 269, 44, 276, time_out=60)
+    pyautogui.click(44, 276) #click on data onglet
+    wait_for_confirmation('App', 348, 150, 409, 171, time_out = 60)
+    pyautogui.click(409, 171) #click in APP DATA
     time.sleep(0.5)
-    pyautogui.click(216, 365) #search for directory
+    pyautogui.click(133, 351) #search for directory
     time.sleep(1.5)
     pyautogui.typewrite(directory)
-    wait_for_confirmation(directory, 115, 412, 216, 440, time_out = 10)
-    pyautogui.click(205, 425) #Access the directory
+    wait_for_confirmation(directory, 118, 404, 214, 419, time_out = 10)
+    pyautogui.click(214, 419) #Access the directory
      
 def wait_for_confirmation(key_word, a, b, c, d, time_out):
         time.sleep(2)
@@ -57,52 +57,52 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
 
 def upload_data(first_run):
     time.sleep(1)
-    wait_for_confirmation('Data', 6, 294, 56, 313, time_out=60)
-    pyautogui.click(982, 295) #click upload
-    wait_for_confirmation('chosen', 261, 303, 383, 340, time_out= 10)
-    pyautogui.click(588, 286) #click the data type 
+    wait_for_confirmation('Data', 18, 269, 44, 276, time_out=60)
+    pyautogui.click(850, 275) #click upload
+    wait_for_confirmation('chosen', 93, 280, 195, 299, time_out= 10)
+    pyautogui.click(296, 253) #click the data type 
     time.sleep(1.5)
     pyautogui.typewrite('TimeCard')
     time.sleep(1)
-    pyautogui.click(481, 350) # click at TimeCard
+    pyautogui.click(312, 32) #click at TimeCard
     time.sleep(1.5)
-    pyautogui.click(889, 284) #click the choose file
+    pyautogui.click(733,255) #cick the choose file
     time.sleep(1.5)
-    pyautogui.click(687, 47) #click the path
     time.sleep(2)
     if first_run == True:
+         pyautogui.click(223, 49) #click the path
          pyautogui.typewrite(path_i) #enter the path
+         pyautogui.hotkey('enter')
     else: pass
-    time.sleep(0.1)
-    pyautogui.hotkey('enter')
+       
     time.sleep(1.5)
-    image = ImageGrab.grab(bbox=(203, 136, 477, 152))
+    image = ImageGrab.grab(bbox=(202, 129, 371, 146))
     gray_image = image.convert('L')
     threshold_image = gray_image.point(lambda x: 0 if x < 150 else 255)
     file_name = pytesseract.image_to_string(threshold_image)
-    pyautogui.doubleClick(192,140) #select the file
-    pyautogui.click(932, 391) 
+    pyautogui.doubleClick(371, 146) #select the file
+    pyautogui.click(574, 321) #click on blank 
     pyautogui.hotkey('end') #scroll down
     time.sleep(0.5)
-    pyautogui.click(851, 410) #chage the org field
+    pyautogui.click(651, 409) #chage the org field
     time.sleep(1)
     pyautogui.typewrite('mig')
-    time.sleep(1.5)
-    pyautogui.click(843, 442)
+    time.sleep(1)
+    pyautogui.click(653, 441)
     time.sleep(0.5)
-    pyautogui.click(839, 493) #chage the shop field
+    pyautogui.click(658, 491) #chage the shop field
     pyautogui.typewrite('mig')
-    time.sleep(1.5)
-    pyautogui.click(816, 529)
+    time.sleep(1)
+    pyautogui.click(658, 529)
     time.sleep(0.5)
-    pyautogui.click(345, 554) #validate data
-    wait_for_confirmation('ready', 439, 540, 667, 562, time_out=10)
+    pyautogui.click(167, 552) #validate data
+    wait_for_confirmation('ready', 269, 539, 497, 561, time_out=15)
     pyautogui.hotkey('end')
     time.sleep(0.5)
-    pyautogui.click(344, 554) #upload data
+    pyautogui.click(167, 552) #upload data
     file_name = search_for_file(file_name)
-    wait_for_confirmation('completed', 255, 351, 816, 394, time_out=300)
-    pyautogui.click(685, 446)
+    wait_for_confirmation('Done', 201, 270, 251, 288, time_out=30)
+    pyautogui.click(509, 420)
     pyautogui.hotkey('f5')
     os.rename(path_i + '\\' + file_name, path_f + '\\' + file_name)
 
@@ -110,4 +110,4 @@ acces_the_webb_app()
 for _ in os.listdir(path_i):
     upload_data(first_run)
     first_run=False
-    wait_for_confirmation('Data', 6, 294, 56, 313, time_out=20)
+    wait_for_confirmation('Data', 18, 269, 44, 276, time_out=60)
