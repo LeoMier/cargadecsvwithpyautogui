@@ -57,6 +57,7 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
 
 def upload_data(first_run):
     time.sleep(1)
+    wait_for_confirmation('Data', 6, 294, 56, 313, time_out=60)
     pyautogui.click(982, 295) #click upload
     wait_for_confirmation('chosen', 261, 303, 383, 340, time_out= 10)
     pyautogui.click(588, 286) #click the data type 
