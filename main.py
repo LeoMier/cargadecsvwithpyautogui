@@ -32,7 +32,8 @@ def reload():
     time.sleep(0.3)
     pyautogui.hotkey('enter')
     time.sleep(2)
-    wait_for_confirmation('Data', 18, 269, 44, 276, time_out=60)
+    wait_for_confirmation('Data', 12, 263, 48, 279, time_out=60)
+    time.sleep(3)
     pyautogui.click(44, 276) #click on data onglet
     wait_for_confirmation('App', 348, 150, 409, 171, time_out = 60)
     pyautogui.click(409, 171) #click in APP DATA
@@ -57,7 +58,7 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
 
 def upload_data(first_run):
     time.sleep(1)
-    wait_for_confirmation('Data', 18, 269, 44, 276, time_out=60)
+    wait_for_confirmation('Data', 12, 263, 48, 279, time_out=60)
     pyautogui.click(850, 275) #click upload
     wait_for_confirmation('chosen', 93, 280, 195, 299, time_out= 10)
     pyautogui.click(296, 253) #click the data type 
