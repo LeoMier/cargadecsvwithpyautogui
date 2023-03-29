@@ -5,7 +5,6 @@ import pytesseract
 import time
 import Levenshtein
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-# first, we obtain the name of all files in a list
 path_i = r'C:\Users\leomj\Documents\LEO\csvuploader\cargadecsvwithpyautogui\a_subir'
 path_f = r'C:\Users\leomj\Documents\LEO\csvuploader\cargadecsvwithpyautogui\subidos'
 url = r'https://bubble.io/page?id=sammanger'
