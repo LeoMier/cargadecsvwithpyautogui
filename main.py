@@ -51,10 +51,11 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
         temp = key_word
         while key_word not in str_test:
             time.sleep(1)
-            if time.time() - start_time > time_out:
-                 reload()
             screenshot = ImageGrab.grab(bbox=(a, b, c, d))
             str_test = pytesseract.image_to_string(screenshot)
+            if time.time() - start_time > time_out:
+                 reload()
+            
 
 def upload_data(first_run):
     time.sleep(1)
@@ -65,13 +66,13 @@ def upload_data(first_run):
     time.sleep(1.5)
     pyautogui.typewrite('TimeCard')
     time.sleep(1)
-    pyautogui.click(312, 32) #click at TimeCard
+    pyautogui.click(338, 316) #click at TimeCard
     time.sleep(1.5)
     pyautogui.click(733,255) #cick the choose file
     time.sleep(1.5)
     time.sleep(2)
     if first_run == True:
-         pyautogui.click(223, 49) #click the path
+         pyautogui.click(334, 46) #click the path
          pyautogui.typewrite(path_i) #enter the path
          pyautogui.hotkey('enter')
     else: pass
@@ -108,7 +109,8 @@ def upload_data(first_run):
     os.rename(path_i + '\\' + file_name, path_f + '\\' + file_name)
 
 acces_the_webb_app()
-for _ in os.listdir(path_i):
+num_files = len(os.listdir(path_i))
+for i in range(num_files):
     upload_data(first_run)
     first_run=False
-    wait_for_confirmation('Data', 18, 269, 44, 276, time_out=60)
+
