@@ -10,7 +10,6 @@ path_i = r'C:\Users\JF_db\Desktop\database\timecards\Data\upload'
 path_f = r'C:\Users\JF_db\Desktop\database\timecards\Data\done'
 url = r'https://bubble.io/page?id=sammanger'
 directory = 'All TimeCards'
-first_run = True
 def search_for_file(image_text):
     closest_name = None
     closest_distance = float('inf')
@@ -59,8 +58,7 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
             str_test = pytesseract.image_to_string(screenshot)
 
 def upload_data(first_run):
-    time.sleep(1)
-    wait_for_confirmation('Data', 12, 263, 48, 279, time_out=60)
+    time.sleep(5)
     pyautogui.click(850, 275) #click upload
     wait_for_confirmation('chosen', 93, 280, 195, 299, time_out= 10)
     pyautogui.click(296, 253) #click the data type 
@@ -71,14 +69,13 @@ def upload_data(first_run):
     time.sleep(1.5)
     pyautogui.click(733,255) #cick the choose file
     time.sleep(1.5)
-    time.sleep(2)
     if first_run == True:
          pyautogui.click(334, 46) #click the path
+         time.sleep(0.5)
          pyautogui.typewrite(path_i) #enter the path
+         time.sleep(0.5)
          pyautogui.hotkey('enter')
     else: pass
-       
-    time.sleep(1.5)
     image = ImageGrab.grab(bbox=(202, 129, 371, 146))
     gray_image = image.convert('L')
     threshold_image = gray_image.point(lambda x: 0 if x < 150 else 255)
@@ -110,8 +107,7 @@ def upload_data(first_run):
     os.rename(path_i + '\\' + file_name, path_f + '\\' + file_name)
 
 acces_the_webb_app()
-for _ in os.listdir(path_i):
+first_run = True
+for _ in range(len(os.listdir(path_i))):
     upload_data(first_run)
-    first_run=False
-    wait_for_confirmation('Data', 18, 269, 44, 276, time_out=60)
-
+    first_run = False
