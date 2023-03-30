@@ -38,9 +38,9 @@ def reload():
     wait_for_confirmation('App', 348, 150, 409, 171, time_out = 10)
     pyautogui.click(409, 171) #click in APP DATA
     time.sleep(0.5)
-    pyautogui.click(133, 351) #search for directory
-    time.sleep(1.5)
-    pyautogui.typewrite(directory)
+    #pyautogui.click(133, 351) #search for directory
+    #time.sleep(1.5)
+    #pyautogui.typewrite(directory)
     # wait_for_confirmation(directory, 118, 404, 214, 419, time_out = 10)
     time.sleep(0.5)
     pyautogui.click(214, 419) #Access the directory
