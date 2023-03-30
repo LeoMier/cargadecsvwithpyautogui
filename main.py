@@ -49,63 +49,6 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
         screenshot = ImageGrab.grab(bbox=(a, b, c, d))
         str_test = pytesseract.image_to_string(screenshot)
     return True
-'''
-def upload_data(first_run):
-    wait_for_confirmation('Data', 12, 263, 48, 279, time_out=10)
-    time.sleep(5)
-    pyautogui.click(850, 275) #click upload
-    wait_for_confirmation('chosen', 93, 280, 195, 299, time_out= 10)
-    time.sleep(3)
-    pyautogui.click(342, 256) #click the data type 
-    time.sleep(6)
-    pyautogui.typewrite('TimeCard')
-    time.sleep(0.5)
-    pyautogui.click(334, 310) #click at TimeCard
-    data_type_validation = wait_for_confirmation('Time', 273, 246, 357, 264, time_out=10)
-    if data_type_validation == False:
-        reload()
-    time.sleep(1)
-    pyautogui.click(733,255) #cick the choose file
-    time.sleep(1.5)
-    if first_run == True:
-         pyautogui.click(334, 46) #click the path
-         time.sleep(0.5)
-         pyautogui.typewrite(path_i) #enter the path
-         time.sleep(0.5)
-         pyautogui.hotkey('enter')
-    elif first_run == False: pass
-    image = ImageGrab.grab(bbox=(202, 129, 371, 146))
-    gray_image = image.convert('L')
-    threshold_image = gray_image.point(lambda x: 0 if x < 150 else 255)
-    file_name = pytesseract.image_to_string(threshold_image)
-    time.sleep(1)
-    pyautogui.doubleClick(371, 146) #select the file
-    pyautogui.click(574, 321) #click on blank 
-    pyautogui.hotkey('end') #scroll down
-    time.sleep(0.5)
-    pyautogui.click(651, 409) #chage the org field
-    time.sleep(1)
-    pyautogui.typewrite('mig')
-    time.sleep(1)
-    pyautogui.click(653, 441)
-    time.sleep(0.5)
-    pyautogui.click(658, 491) #chage the shop field
-    pyautogui.typewrite('mig')
-    time.sleep(1)
-    pyautogui.click(658, 529)
-    time.sleep(0.5)
-    pyautogui.click(167, 552) #validate data
-    wait_for_confirmation('ready', 269, 539, 497, 561, time_out=15)
-    pyautogui.hotkey('end')
-    time.sleep(0.5)
-    #pyautogui.click(167, 552) #upload data
-    file_name = search_for_file(file_name)
-    #wait_for_confirmation('Done', 201, 270, 251, 288, time_out=30)
-    #pyautogui.click(509, 420)
-    pyautogui.hotkey('f5')
-    os.rename(path_i + '\\' + file_name, path_f + '\\' + file_name)
-    return True
-'''
 
 pyautogui.hotkey('win', '1')
 reload()
