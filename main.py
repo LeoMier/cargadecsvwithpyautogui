@@ -33,7 +33,7 @@ def reload(first_run):
     pyautogui.click(409, 171) #click in APP DATA
     time.sleep(1.5)
     if first_run == True:
-        pyautogui.click(937,229)
+        pyautogui.click(943,226)
         time.sleep(10)
     time.sleep(1)
     #pyautogui.click(133, 351) #search for directory
