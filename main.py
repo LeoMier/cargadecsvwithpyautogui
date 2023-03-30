@@ -6,8 +6,8 @@ import time
 import Levenshtein
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 # first, we obtain the name of all files in a list
-path_i = r'C:\Users\leomj\Documents\LEO\csvuploader\cargadecsvwithpyautogui\a_subir'
-path_f = r'C:\Users\leomj\Documents\LEO\csvuploader\cargadecsvwithpyautogui\subidos'
+path_i = r'C:\Users\JF_db\Desktop\database\timecards\Data\upload'
+path_f = r'C:\Users\JF_db\Desktop\database\timecards\Data\done'
 url = r'https://bubble.io/page?id=sammanger'
 directory = 'All TimeCards'
 first_run = True
@@ -25,6 +25,7 @@ def acces_the_webb_app():
     pyautogui.hotkey('win', '1')
     reload()
 
+
 def reload():
     pyautogui.click(162, 48) #access the url
     time.sleep(0.3)
@@ -41,7 +42,8 @@ def reload():
     pyautogui.click(133, 351) #search for directory
     time.sleep(1.5)
     pyautogui.typewrite(directory)
-    wait_for_confirmation(directory, 118, 404, 214, 419, time_out = 10)
+    # wait_for_confirmation(directory, 118, 404, 214, 419, time_out = 10)
+    time.sleep(0.5)
     pyautogui.click(214, 419) #Access the directory
      
 def wait_for_confirmation(key_word, a, b, c, d, time_out):
@@ -51,11 +53,10 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
         temp = key_word
         while key_word not in str_test:
             time.sleep(1)
-            screenshot = ImageGrab.grab(bbox=(a, b, c, d))
-            str_test = pytesseract.image_to_string(screenshot)
             if time.time() - start_time > time_out:
                  reload()
-            
+            screenshot = ImageGrab.grab(bbox=(a, b, c, d))
+            str_test = pytesseract.image_to_string(screenshot)
 
 def upload_data(first_run):
     time.sleep(1)
@@ -66,7 +67,7 @@ def upload_data(first_run):
     time.sleep(1.5)
     pyautogui.typewrite('TimeCard')
     time.sleep(1)
-    pyautogui.click(338, 316) #click at TimeCard
+    pyautogui.click(312, 32) #click at TimeCard
     time.sleep(1.5)
     pyautogui.click(733,255) #cick the choose file
     time.sleep(1.5)
@@ -109,8 +110,8 @@ def upload_data(first_run):
     os.rename(path_i + '\\' + file_name, path_f + '\\' + file_name)
 
 acces_the_webb_app()
-num_files = len(os.listdir(path_i))
-for i in range(num_files):
+for _ in os.listdir(path_i):
     upload_data(first_run)
     first_run=False
+    wait_for_confirmation('Data', 18, 269, 44, 276, time_out=60)
 
