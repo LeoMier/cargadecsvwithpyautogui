@@ -5,7 +5,6 @@ import pytesseract
 import time
 import Levenshtein
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-# first, we obtain the name of all files in a list
 path_i = r'C:\Users\JF_db\Desktop\database\timecards\Data\upload'
 path_f = r'C:\Users\JF_db\Desktop\database\timecards\Data\done'
 url = r'https://bubble.io/page?id=sammanger'
@@ -19,11 +18,6 @@ def search_for_file(image_text):
             closest_name = file_name
             closest_distance = distance
     return closest_name
-
-def acces_the_webb_app():
-    pyautogui.hotkey('win', '1')
-    reload()
-
 
 def reload():
     pyautogui.click(162, 48) #access the url
@@ -88,7 +82,7 @@ def upload_data(first_run):
          pyautogui.typewrite(path_i) #enter the path
          time.sleep(0.5)
          pyautogui.hotkey('enter')
-    else: pass
+    elif first_run == False: pass
     image = ImageGrab.grab(bbox=(202, 129, 371, 146))
     gray_image = image.convert('L')
     threshold_image = gray_image.point(lambda x: 0 if x < 150 else 255)
@@ -113,15 +107,19 @@ def upload_data(first_run):
     wait_for_confirmation('ready', 269, 539, 497, 561, time_out=15)
     pyautogui.hotkey('end')
     time.sleep(0.5)
-    pyautogui.click(167, 552) #upload data
+    #pyautogui.click(167, 552) #upload data
     file_name = search_for_file(file_name)
-    wait_for_confirmation('Done', 201, 270, 251, 288, time_out=30)
-    pyautogui.click(509, 420)
+    #wait_for_confirmation('Done', 201, 270, 251, 288, time_out=30)
+    #pyautogui.click(509, 420)
     pyautogui.hotkey('f5')
     os.rename(path_i + '\\' + file_name, path_f + '\\' + file_name)
+    return True
 
-acces_the_webb_app()
+pyautogui.hotkey('win', '1')
+reload()
 first_run = True
 for _ in range(len(os.listdir(path_i))):
-    upload_data(first_run)
-    first_run = False
+    u_completed = False
+    while u_completed == False:
+        u_completed = upload_data(first_run)
+        first_run = False
