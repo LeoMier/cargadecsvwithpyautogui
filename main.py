@@ -57,7 +57,7 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
             str_test = pytesseract.image_to_string(screenshot)
 
 def upload_data(first_run):
-    time.sleep(5)
+    time.sleep(7)
     pyautogui.click(850, 275) #click upload
     wait_for_confirmation('chosen', 93, 280, 195, 299, time_out= 10)
     pyautogui.click(296, 253) #click the data type 
