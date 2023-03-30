@@ -73,10 +73,11 @@ def upload_data(first_run):
     time.sleep(5)
     pyautogui.click(850, 275) #click upload
     wait_for_confirmation('chosen', 93, 280, 195, 299, time_out= 10)
+    time.sleep(1.5)
     pyautogui.click(342, 256) #click the data type 
-    time.sleep(2)
+    time.sleep(3.5)
     pyautogui.typewrite('TimeCard')
-    time.sleep(2)
+    time.sleep(0.5)
     pyautogui.click(334, 310) #click at TimeCard
     time.sleep(1)
     pyautogui.click(733,255) #cick the choose file
