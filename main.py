@@ -31,6 +31,7 @@ def reload(first_run):
     pyautogui.click(44, 276) #click on data onglet
     wait_for_confirmation('App', 348, 150, 409, 171, time_out = 10)
     pyautogui.click(409, 171) #click in APP DATA
+    time.sleep(1.5)
     if first_run == True:
         pyautogui.click(937,229)
         time.sleep(10)
