@@ -64,9 +64,9 @@ def upload_data(first_run):
     pyautogui.click(296, 253) #click the data type 
     time.sleep(1.5)
     pyautogui.typewrite('TimeCard')
-    time.sleep(1)
-    pyautogui.click(312, 32) #click at TimeCard
     time.sleep(1.5)
+    pyautogui.click(312, 32) #click at TimeCard
+    time.sleep(1)
     pyautogui.click(733,255) #cick the choose file
     time.sleep(1.5)
     if first_run == True:
@@ -80,6 +80,7 @@ def upload_data(first_run):
     gray_image = image.convert('L')
     threshold_image = gray_image.point(lambda x: 0 if x < 150 else 255)
     file_name = pytesseract.image_to_string(threshold_image)
+    time.sleep(1)
     pyautogui.doubleClick(371, 146) #select the file
     pyautogui.click(574, 321) #click on blank 
     pyautogui.hotkey('end') #scroll down
