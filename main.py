@@ -64,7 +64,7 @@ def upload_data(first_run):
     time.sleep(1.5)
     pyautogui.typewrite('TimeCard')
     time.sleep(1.5)
-    pyautogui.click(312, 32) #click at TimeCard
+    pyautogui.click(325, 320) #click at TimeCard
     time.sleep(1)
     pyautogui.click(733,255) #cick the choose file
     time.sleep(1.5)
