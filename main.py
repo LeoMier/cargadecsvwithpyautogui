@@ -32,10 +32,10 @@ def reload():
     time.sleep(0.3)
     pyautogui.hotkey('enter')
     time.sleep(2)
-    wait_for_confirmation('Data', 12, 263, 48, 279, time_out=60)
+    wait_for_confirmation('Data', 12, 263, 48, 279, time_out=10)
     time.sleep(3)
     pyautogui.click(44, 276) #click on data onglet
-    wait_for_confirmation('App', 348, 150, 409, 171, time_out = 60)
+    wait_for_confirmation('App', 348, 150, 409, 171, time_out = 10)
     pyautogui.click(409, 171) #click in APP DATA
     time.sleep(0.5)
     pyautogui.click(133, 351) #search for directory
@@ -49,7 +49,6 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
         time.sleep(2)
         str_test = 'ñÍ'
         start_time = time.time()
-        temp = key_word
         while key_word not in str_test:
             time.sleep(1)
             if time.time() - start_time > time_out:
