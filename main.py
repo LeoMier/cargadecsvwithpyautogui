@@ -19,7 +19,7 @@ def search_for_file(image_text):
             closest_distance = distance
     return closest_name
 
-def reload():
+def reload(first_run):
     pyautogui.click(162, 48) #access the url
     time.sleep(0.3)
     pyautogui.typewrite(url)
@@ -31,6 +31,9 @@ def reload():
     pyautogui.click(44, 276) #click on data onglet
     wait_for_confirmation('App', 348, 150, 409, 171, time_out = 10)
     pyautogui.click(409, 171) #click in APP DATA
+    if first_run == True:
+        pyautogui.click(937,229)
+        time.sleep(10)
     time.sleep(1)
     #pyautogui.click(133, 351) #search for directory
     #time.sleep(1.5)
@@ -51,20 +54,20 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
     return True
 
 pyautogui.hotkey('win', '1')
-reload()
 first_run = True
+reload(first_run)
 for _ in range(len(os.listdir(path_i))):
     u_completed = False
     while u_completed == False:
         validation = wait_for_confirmation('Data', 12, 263, 48, 279, time_out=10)
         if validation == False:
-            reload()
+            reload(False)
             continue
         time.sleep(5)
         pyautogui.click(850, 275) #click upload
         validation = wait_for_confirmation('chosen', 93, 280, 195, 299, time_out= 10)
         if validation == False:
-            reload()
+            reload(False)
             continue
         time.sleep(3)
         pyautogui.click(342, 256) #click the data type 
@@ -74,7 +77,7 @@ for _ in range(len(os.listdir(path_i))):
         pyautogui.click(334, 310) #click at TimeCard
         validation = wait_for_confirmation('Time', 273, 246, 357, 264, time_out=10)
         if validation == False:
-            reload()
+            reload(False)
             continue
         time.sleep(1)
         pyautogui.click(733,255) #cick the choose file
@@ -109,7 +112,7 @@ for _ in range(len(os.listdir(path_i))):
         pyautogui.click(167, 552) #validate data
         validation = wait_for_confirmation('ready', 269, 539, 497, 561, time_out=15)
         if validation == False:
-            reload()
+            reload(False)
             continue
         pyautogui.hotkey('end')
         time.sleep(0.5)
@@ -117,7 +120,7 @@ for _ in range(len(os.listdir(path_i))):
         file_name = search_for_file(file_name)
         validation = wait_for_confirmation('Done', 201, 270, 251, 288, time_out=30)
         if validation == False:
-            reload()
+            reload(False)
             continue
         pyautogui.click(509, 420)
         time.sleep(1)
