@@ -5,9 +5,10 @@ import pytesseract
 import time
 import Levenshtein
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-path_i = r'C:\Users\JF_db\Desktop\database\timecards\Data\queue'
-path_u = r'C:\Users\JF_db\Desktop\database\timecards\Data\upload'
-path_f = r'C:\Users\JF_db\Desktop\database\timecards\Data\done'
+#path_i = r'C:\Users\JF_db\Desktop\database\timecards\Data\queue'
+#path_f = r'C:\Users\JF_db\Desktop\database\timecards\Data\done'
+path_i = r'C:\Users\leomj\Documents\LEO\csv upload\upload'
+path_f = r'C:\Users\leomj\Documents\LEO\csv upload\done'
 url = r'https://bubble.io/page?id=sammanger'
 directory = 'All TimeCards'
 
@@ -57,19 +58,6 @@ def wait_for_confirmation(key_word, a, b, c, d, time_out):
         except ValueError: pass
         if time.time() - start_time > time_out:
             return False
-'''
-def wait_for_confirmation(key_word, a, b, c, d, time_out):
-    time.sleep(2)
-    str_test = 'ñÍ'
-    start_time = time.time()
-    while key_word not in str_test:
-        time.sleep(1)
-        if time.time() - start_time > time_out:
-            return False
-        screenshot = ImageGrab.grab(bbox=(a, b, c, d))
-        str_test = pytesseract.image_to_string(screenshot)
-    return True
-'''
 
 pyautogui.hotkey('win', '1')
 first_run = True
@@ -99,24 +87,19 @@ for file_name in os.listdir(path_i):
             continue
         time.sleep(1)
         click(733, 255) #cick the choose file button
-        if os.path.exists(path_i + '\\' + file_name):
-            os.rename(path_i + '\\' + file_name, path_u + '\\' + file_name)
         time.sleep(1.5)
         if first_run == True:
             click(334, 46) #click the path
             time.sleep(0.5)
-            pyautogui.typewrite(path_u) #enter the path
+            pyautogui.typewrite(path_i) #enter the path
             time.sleep(0.5)
             pyautogui.hotkey('enter')
         elif first_run == False: pass
-        '''
-        image = ImageGrab.grab(bbox=(203, 129, 371, 146))
-        gray_image = image.convert('L')
-        threshold_image = gray_image.point(lambda x: 1 if x < 150 else 255)
-        file_name = pytesseract.image_to_string(threshold_image)
-        '''
         time.sleep(1)
-        pyautogui.doubleClick(371, 146) #select the file
+        click(385, 448)
+        pyautogui.typewrite(file_name)
+        #pyautogui.doubleClick(371, 146) #select the file
+        pyautogui.hotkey('enter')
         click(574, 321) #click on blank 
         pyautogui.hotkey('end') #scroll down
         time.sleep(0.5)
@@ -138,7 +121,7 @@ for file_name in os.listdir(path_i):
             continue
         pyautogui.hotkey('end')
         time.sleep(0.5)
-        click(167, 552) #upload data
+        #click(167, 552) #upload data
         #file_name = search_for_file(file_name)
         validation = wait_for_confirmation('Done', 201, 270, 251, 288, time_out=30)
         if validation == False:
@@ -147,6 +130,6 @@ for file_name in os.listdir(path_i):
         click(509, 420)
         time.sleep(1)
         pyautogui.hotkey('f5')
-        os.rename(path_u + '\\' + file_name, path_f + '\\' + file_name)
+        os.rename(path_i + '\\' + file_name, path_f + '\\' + file_name)
         u_completed = True
     first_run = False
