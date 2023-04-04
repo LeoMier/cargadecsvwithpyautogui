@@ -96,7 +96,6 @@ for file_name in os.listdir(path_i):
         time.sleep(1)
         click(385, 448)
         pyautogui.typewrite(file_name)
-        #pyautogui.doubleClick(371, 146) #select the file
         pyautogui.hotkey('enter')
         click(574, 321) #click on blank 
         pyautogui.hotkey('end') #scroll down
