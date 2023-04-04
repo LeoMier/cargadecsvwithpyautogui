@@ -5,10 +5,8 @@ import pytesseract
 import time
 import Levenshtein
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-#path_i = r'C:\Users\JF_db\Desktop\database\timecards\Data\queue'
-#path_f = r'C:\Users\JF_db\Desktop\database\timecards\Data\done'
-path_i = r'C:\Users\leomj\Documents\LEO\csv upload\upload'
-path_f = r'C:\Users\leomj\Documents\LEO\csv upload\done'
+path_i = r'C:\Users\JF_db\Desktop\database\timecards\Data\queue'
+path_f = r'C:\Users\JF_db\Desktop\database\timecards\Data\done'
 url = r'https://bubble.io/page?id=sammanger'
 directory = 'All TimeCards'
 
