@@ -39,7 +39,10 @@ def reload(first_run):
     if first_run == True:
         click(943,226) #click on live server
         time.sleep(10) #wait for the web app to charge
-     
+    # IMPLEMENT A SWITCH TO LOG INTO THE LIVE SERVER IF NEEDED
+    if wait_for_confirmation('live', 878, 195, 996, 231) == True:
+        click(926, 219)
+        
 def wait_for_confirmation(key_word, a, b, c, d, time_out):
     time.sleep(2)
     str_test = 'ñÍ'
